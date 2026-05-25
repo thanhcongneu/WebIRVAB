@@ -1,0 +1,110 @@
+/* VietABank Design System — Global Overrides & IR Portal Extensions */
+@import url('../styles/vietabank-design-system.css');
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* IR portal extensions — NOT in design system CSS */
+@layer components {
+
+  /* Stock ticker bar (in Header) */
+  .stock-ticker {
+    background-color: #2563EB;
+    color: white;
+  }
+
+  /* IR hero gradient */
+  .ir-hero {
+    background: linear-gradient(135deg, #122E5B 0%, #1B4486 50%, #2563EB 100%);
+  }
+
+  /* Chart container placeholder */
+  .chart-container {
+    position: relative;
+    width: 100%;
+    height: 256px;
+  }
+
+  /* Page enter animation — applied to page wrappers */
+  .page-enter {
+    animation: fadeInUp var(--transition-normal) ease-out;
+  }
+
+  /* IR portal-specific status badge overrides for workflow states */
+  .badge-draft-ir {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-600);
+    border: 1px solid var(--color-gray-200);
+  }
+
+  .badge-review-ir {
+    background-color: var(--color-warning-100);
+    color: var(--color-warning-700);
+    border: 1px solid var(--color-warning-200);
+  }
+
+  .badge-approved-ir {
+    background-color: var(--color-info-100);
+    color: var(--color-info-700);
+    border: 1px solid var(--color-info-200);
+  }
+
+  .badge-published-ir {
+    background-color: var(--color-success-100);
+    color: var(--color-success-700);
+    border: 1px solid var(--color-success-200);
+  }
+
+  /* Glass panel effect — used in hero stock widget */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Stagger animation for list items */
+  .stagger-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Hover lift — card lift effect on hover */
+  .hover-lift-effect {
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .hover-lift-effect:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Button press feedback */
+  .btn-press:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+}
+
+@layer utilities {
+  /* Stagger animation delays */
+  .stagger-delay-1 { animation-delay: 100ms; }
+  .stagger-delay-2 { animation-delay: 200ms; }
+  .stagger-delay-3 { animation-delay: 300ms; }
+  .stagger-delay-4 { animation-delay: 400ms; }
+  .stagger-delay-5 { animation-delay: 500ms; }
+  .stagger-delay-6 { animation-delay: 600ms; }
+}
+
+/* Override design system button hover for IR portal specific styles */
+.btn-primary-ir {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary-ir:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
