@@ -1,59 +1,59 @@
-# VietABank IR Website MVP
+# VietABank IR Platform
 
-Website Quan hệ Nhà đầu tư (Investor Relations) cho ngân hàng thương mại cổ phần niêm yết.
+Nền tảng Quan hệ Nhà đầu tư của VietABank — bao gồm website public và API backend.
 
-## Yêu cầu hệ thống
+## Cấu trúc Monorepo
 
-- **Node.js 20+** — [Tải tại đây](https://nodejs.org/)
-- npm hoặc yarn
+```
+.
+├── ir-mvp/          # Next.js 16 — Website IR public
+└── ir-backend/      # NestJS 10 — REST API backend
+```
 
-## Cài đặt
+## ir-mvp — Website Public (Next.js 16)
+
+Website tĩnh cho nhà đầu tư. SEO-optimized, server-rendered.
 
 ```bash
 cd ir-mvp
 npm install
+npm run dev      # Development
+npm run build    # Production build
 ```
 
-## Chạy development server
+## ir-backend — REST API (NestJS 10)
+
+Backend API cho quản lý nội dung IR. JWT auth, RBAC, PostgreSQL + TypeORM.
 
 ```bash
-npm run dev
+cd ir-backend
+npm install
+cp .env.example .env   # Configure database + JWT
+npm run start:dev
 ```
 
-Mở [http://localhost:3000](http://localhost:3000) để xem website.
+## Tech Stack
 
-## Cấu trúc trang
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Next.js 16, React 19, TypeScript, TailwindCSS |
+| Backend | NestJS 10, TypeORM, PostgreSQL |
+| Auth | JWT + RBAC (maker/checker/approver/admin) |
+| Styling | VietABank Design System v2.0 |
 
-| Route | Mô tả |
-|-------|-------|
-| `/` | Homepage — Hero, KPI, Stock widget, Disclosures, Events |
-| `/financials` | Thông tin tài chính, KPI dashboard, bảng dữ liệu lịch sử |
-| `/stock` | Thông tin cổ phiếu, biểu đồ, cơ cấu cổ đông |
-| `/disclosures` | Trung tâm công bố thông tin — tìm kiếm, lọc, tải PDF |
-| `/governance` | Quản trị công ty, ban lãnh đạo, chính sách |
-| `/esg` | ESG & Phát triển bền vững |
-| `/events` | Lịch sự kiện, archive webcasts |
-| `/agm` | Trung tâm cổ đông, tài liệu ĐHĐCĐ |
-| `/admin` | CMS Admin — quản lý công bố, workflow, users, audit log |
+## API Endpoints
 
-## CMS Workflow (Maker-Checker-Approver)
+| Module | Base | Description |
+|--------|------|-------------|
+| Auth | `/api/v1/auth` | Login, JWT token |
+| Disclosures | `/api/v1/disclosures` | Công bố thông tin |
+| KPIs | `/api/v1/kpis` | Chỉ số tài chính |
+| Events | `/api/v1/events` | Sự kiện IR |
+| Board | `/api/v1/board` | BOD/BOS |
+| Stocks | `/api/v1/stocks` | Dữ liệu VAB |
 
-- **Maker**: Tạo & gửi công bố
-- **Checker**: Rà soát nội dung
-- **Approver**: Phê duyệt & xuất bản
-- **Admin**: Quản lý hệ thống
-- **Auditor**: Xem audit log (chỉ đọc)
+## Team
 
-## Design System
-
-Tuân thủ design system **"Institutional Excellence"**:
-- Colors: Navy (#002d68), Red (#bb0014), Status colors
-- Typography: Hanken Grotesk (headlines) + IBM Plex Sans (body)
-- Spacing: 8px base unit, 1200px max container
-
-## Stack
-
-- **Framework**: Next.js 15 (App Router)
-- **Styling**: TailwindCSS
-- **Icons**: Lucide React
-- **Data**: Mock data (production sẽ kết nối API)
+- **Frontend**: Next.js 16 + VietABank Design System
+- **Backend**: NestJS 10 + TypeORM + PostgreSQL
+- **Investor Relations**: VietABank
